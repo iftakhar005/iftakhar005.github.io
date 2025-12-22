@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --secondary: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+        /* Header Section */
+        header { text-align: center; padding: 4rem 0; }
+        header h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent); }
+        header p { color: var(--secondary); font-size: 1.2rem; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; }
+        nav a { color: var(--text); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* Projects Grid */
+        .section-title { margin: 2rem 0; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            transition: transform 0.3s ease;
+            border: 1px solid #334155;
+        }
+
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+        .tag { 
+            display: inline-block; 
+            background: rgba(56, 189, 248, 0.1); 
+            color: var(--accent); 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            margin-right: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .skill-item { background: #334155; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+
+        /* Footer */
+        footer { text-align: center; padding: 4rem 0; color: var(--secondary); border-top: 1px solid #334155; margin-top: 4rem; }
+        .social-links { font-size: 1.5rem; margin-bottom: 1rem; }
+        .social-links a { color: var(--text); margin: 0 10px; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+        </nav>
+
+        <header id="about">
+            <h1>Hi, I'm [Your Name] 👋</h1>
+            <p>Final Year CSE Student | Bioinformatics & Machine Learning Enthusiast</p>
+        </header>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>UIU Talent Hunt</h3>
+                    <p>A web platform for student participation and talent showcasing built with HTML, CSS, and Figma design.</p>
+                    <div class="tag">Web Development</div>
+                    <div class="tag">UI/UX</div>
+                </div>
+
+                <div class="card">
+                    <h3>IoT Gas & Motion Detection</h3>
+                    <p>Interfaced MQ-2 and Ultrasonic sensors with Raspberry Pi 5 for real-time environmental monitoring.</p>
+                    <div class="tag">Raspberry Pi</div>
+                    <div class="tag">Python</div>
+                </div>
+
+                <div class="card">
+                    <h3>Reddit Data Analysis</h3>
+                    <p>Scraped and analyzed Dhaka-based Reddit data to extract insights using ML clustering techniques.</p>
+                    <div class="tag">Machine Learning</div>
+                    <div class="tag">DBSCAN</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills & Tools</h2>
+            <div class="skills-list">
+                <span class="skill-item">Machine Learning (DBSCAN, HDBSCAN)</span>
+                <span class="skill-item">Python</span>
+                <span class="skill-item">HTML/CSS</span>
+                <span class="skill-item">Raspberry Pi</span>
+                <span class="skill-item">Bioinformatics</span>
+                <span class="skill-item">Linux (Ubuntu)</span>
+                <span class="skill-item">Figma</span>
+            </div>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:yourname@email.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2025 [Your Name]. Built with ☕ and Code.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
