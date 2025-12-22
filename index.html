@@ -3,134 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Iftakhar Majumder | Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
-            --accent: #38bdf8;
-            --secondary: #94a3b8;
+            --bg: #0b0f1a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #22d3ee;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        /* Modern Background Glow */
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b0f1a 100%);
+            z-index: -1;
+        }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
 
-        /* Header Section */
-        header { text-align: center; padding: 4rem 0; }
-        header h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent); }
-        header p { color: var(--secondary); font-size: 1.2rem; }
+        /* Header & Hero */
+        header { padding: 6rem 0 4rem; text-align: center; }
+        .hero-name { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; color: var(--accent); margin-bottom: 1rem; }
+        .hero-tag { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin: 0 auto; }
 
         /* Navigation */
-        nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; }
-        nav a { color: var(--text); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav { display: flex; justify-content: center; gap: 2rem; position: sticky; top: 0; background: rgba(11, 15, 26, 0.8); backdrop-filter: blur(10px); padding: 1rem; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        nav a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav a:hover { color: var(--accent); }
 
-        /* Projects Grid */
-        .section-title { margin: 2rem 0; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        /* Sections */
+        section { padding: 5rem 0; }
+        .section-title { font-size: 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+        .section-title::after { content: ""; height: 1px; background: rgba(255,255,255,0.1); flex-grow: 1; }
+
+        /* Education & Skills Grid */
+        .info-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .edu-card { background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem; }
+        .edu-card h3 { color: var(--accent); margin-bottom: 0.5rem; }
 
-        .card { 
-            background: var(--card-bg); 
-            padding: 1.5rem; 
-            border-radius: 12px; 
-            transition: transform 0.3s ease;
-            border: 1px solid #334155;
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .skill-pill { background: rgba(34, 211, 238, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; border: 1px solid rgba(34, 211, 238, 0.2); }
+
+        /* Projects Grid */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .project-card { 
+            background: var(--card-bg); border-radius: 16px; padding: 2rem; 
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
-        .tag { 
-            display: inline-block; 
-            background: rgba(56, 189, 248, 0.1); 
-            color: var(--accent); 
-            padding: 0.2rem 0.6rem; 
-            border-radius: 4px; 
-            font-size: 0.8rem; 
-            margin-right: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        /* Skills Section */
-        .skills-list { display: flex; flex-wrap: wrap; gap: 1rem; }
-        .skill-item { background: #334155; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .project-card h3 { margin-bottom: 1rem; font-size: 1.4rem; }
+        .project-card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: bold; }
 
         /* Footer */
-        footer { text-align: center; padding: 4rem 0; color: var(--secondary); border-top: 1px solid #334155; margin-top: 4rem; }
-        .social-links { font-size: 1.5rem; margin-bottom: 1rem; }
-        .social-links a { color: var(--text); margin: 0 10px; transition: 0.3s; }
-        .social-links a:hover { color: var(--accent); }
+        footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 4rem 0; text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; font-size: 1.5rem; }
+        .social-icons a { color: var(--text-main); transition: 0.3s; }
+        .social-icons a:hover { color: var(--accent); transform: scale(1.2); }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .hero-name { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-        </nav>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
+    <div class="container">
         <header id="about">
-            <h1>Hi, I'm [Your Name] 👋</h1>
-            <p>Final Year CSE Student | Bioinformatics & Machine Learning Enthusiast</p>
+            <h1 class="hero-name">Iftakhar Majumder</h1>
+            <p class="hero-tag">
+                Final Year CSE Student at <strong>United International University</strong>. 
+                Passionate about Machine Learning, NLP, and their applications in <strong>Bioinformatics</strong>.
+            </p>
         </header>
 
+        <div class="info-grid">
+            <section>
+                <h2 class="section-title">Education</h2>
+                <div class="edu-card">
+                    <h3>B.Sc. in Computer Science & Engineering</h3>
+                    <p>United International University (UIU) </p>
+                    <p style="color: var(--accent); font-size: 0.9rem;">Exp. Graduation: Nov 2026 | 10th Trimester [cite: 6, 7]</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Thesis: Applied Machine Learning in Bioinformatics </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-pill">Python</span> <span class="skill-pill">C/C++</span> 
+                    <span class="skill-pill">Java</span> <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">Scikit-learn</span> <span class="skill-pill">PyTorch</span>
+                    <span class="skill-pill">TensorFlow</span> <span class="skill-pill">NLP</span>
+                    <span class="skill-pill">Linux (Ubuntu)</span> <span class="skill-pill">Figma</span>
+                    <span class="skill-pill">Arduino/ESP32</span> [cite: 34, 35, 36]
+                </div>
+            </section>
+        </div>
+
         <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>UIU Talent Hunt</h3>
-                    <p>A web platform for student participation and talent showcasing built with HTML, CSS, and Figma design.</p>
-                    <div class="tag">Web Development</div>
-                    <div class="tag">UI/UX</div>
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>UIU Talent Hunt Platform</h3>
+                        <p>Leading UI/UX design and frontend development for a university talent showcasing platform with secure student authentication[cite: 20, 24, 25].</p>
+                    </div>
+                    <div class="tech-stack">HTML5 • CSS3 • Figma</div>
                 </div>
 
-                <div class="card">
-                    <h3>IoT Gas & Motion Detection</h3>
-                    <p>Interfaced MQ-2 and Ultrasonic sensors with Raspberry Pi 5 for real-time environmental monitoring.</p>
-                    <div class="tag">Raspberry Pi</div>
-                    <div class="tag">Python</div>
+                <div class="project-card">
+                    <div>
+                        <h3>Social Media Sentiment Analysis</h3>
+                        <p>Experimented with SVM and Naïve Bayes to classify text data. Performed tokenization, vectorization, and performance evaluation[cite: 14, 18, 19].</p>
+                    </div>
+                    <div class="tech-stack">Python • Scikit-learn • NLP</div>
                 </div>
 
-                <div class="card">
-                    <h3>Reddit Data Analysis</h3>
-                    <p>Scraped and analyzed Dhaka-based Reddit data to extract insights using ML clustering techniques.</p>
-                    <div class="tag">Machine Learning</div>
-                    <div class="tag">DBSCAN</div>
+                <div class="project-card">
+                    <div>
+                        <h3>Mental Health Rehabilitation System</h3>
+                        <p>Designed a simulation system for patient schedules. Integrated gamification principles and managed full DB schema[cite: 26, 28, 31, 32].</p>
+                    </div>
+                    <div class="tech-stack">Java • SQL • JavaFX</div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <h3>Wandernest Software</h3>
+                        <p>Developed backend components for a travel management platform focusing on scalability and user experience[cite: 11, 13].</p>
+                    </div>
+                    <div class="tech-stack">Backend Development</div>
                 </div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2 class="section-title">Skills & Tools</h2>
-            <div class="skills-list">
-                <span class="skill-item">Machine Learning (DBSCAN, HDBSCAN)</span>
-                <span class="skill-item">Python</span>
-                <span class="skill-item">HTML/CSS</span>
-                <span class="skill-item">Raspberry Pi</span>
-                <span class="skill-item">Bioinformatics</span>
-                <span class="skill-item">Linux (Ubuntu)</span>
-                <span class="skill-item">Figma</span>
+        <footer id="contact">
+            <h2 style="margin-bottom: 1rem;">Let's Connect</h2>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Dhaka, Bangladesh </p>
+            <div class="social-icons">
+                <a href="mailto:iftyl1234@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/iftakhar005" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/iftakhar-majumder" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-        </section>
-
-        <footer>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:yourname@email.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p>&copy; 2025 [Your Name]. Built with ☕ and Code.</p>
+            <p style="font-size: 0.8rem; color: var(--text-dim);">&copy; 2025 Iftakhar Majumder. All rights reserved.</p>
         </footer>
     </div>
 
