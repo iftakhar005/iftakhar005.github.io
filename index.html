@@ -3,52 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iftakhar Majumder | Portfolio</title>
+    <title>Iftakhar Hasan | ML & Bioinformatics Researcher</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         :root {
             --bg: #0b0f1a;
             --card-bg: rgba(30, 41, 59, 0.7);
             --accent: #22d3ee;
+            --accent-alt: #06b6d4;
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        /* Modern Background Glow */
+        /* Background Glow */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b0f1a 100%);
             z-index: -1;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
-
-        /* Header & Hero */
-        header { padding: 6rem 0 4rem; text-align: center; }
-        .hero-name { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; color: var(--accent); margin-bottom: 1rem; }
-        .hero-tag { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 
         /* Navigation */
-        nav { display: flex; justify-content: center; gap: 2rem; position: sticky; top: 0; background: rgba(11, 15, 26, 0.8); backdrop-filter: blur(10px); padding: 1rem; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        nav a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        nav { 
+            display: flex; justify-content: center; gap: 2rem; position: sticky; top: 0; 
+            background: rgba(11, 15, 26, 0.95); backdrop-filter: blur(10px); 
+            padding: 1.2rem; z-index: 100; border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+            flex-wrap: wrap;
+        }
+        nav a { 
+            color: var(--text-main); text-decoration: none; font-weight: 600; 
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; 
+            transition: 0.3s; padding: 0.5rem 1rem;
+        }
         nav a:hover { color: var(--accent); }
 
+        /* Header & Hero */
+        header { padding: 4rem 0 3rem; text-align: center; }
+        .hero-name { font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; }
+        .hero-title { font-size: 1.3rem; color: var(--accent-alt); margin-bottom: 1rem; }
+        .hero-tag { font-size: 1.05rem; color: var(--text-dim); max-width: 800px; margin: 0 auto; line-height: 1.8; }
+
         /* Sections */
-        section { padding: 5rem 0; }
-        .section-title { font-size: 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+        section { padding: 4rem 0; }
+        .section-title { 
+            font-size: 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
+            color: var(--accent);
+        }
+        .section-title::before { content: ""; width: 4px; height: 2rem; background: var(--accent); border-radius: 2px; }
         .section-title::after { content: ""; height: 1px; background: rgba(255,255,255,0.1); flex-grow: 1; }
 
-        /* Education & Skills Grid */
-        .info-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; }
-        
-        .edu-card { background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem; }
-        .edu-card h3 { color: var(--accent); margin-bottom: 0.5rem; }
+        /* Status Badge */
+        .status-badge {
+            display: inline-block; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem;
+            font-weight: bold; text-transform: uppercase; margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+        .status-active { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .status-submitted { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
+        .status-progress { background: rgba(34, 211, 238, 0.2); color: var(--accent); border: 1px solid var(--accent); }
 
-        .skills-container { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-        .skill-pill { background: rgba(34, 211, 238, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; border: 1px solid rgba(34, 211, 238, 0.2); }
+        /* Research Projects Grid */
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+        .research-card { 
+            background: var(--card-bg); border-radius: 16px; padding: 2.5rem; 
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; overflow: hidden;
+        }
+        .research-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+        }
+        .research-card:hover { 
+            transform: translateY(-8px); border-color: var(--accent); 
+            box-shadow: 0 20px 40px rgba(34, 211, 238, 0.1);
+        }
+        .research-card h3 { margin-bottom: 0.5rem; font-size: 1.4rem; color: var(--accent); }
+        .research-subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
+        .research-card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+
+        .research-highlights {
+            background: rgba(34, 211, 238, 0.05); padding: 1.5rem; border-radius: 8px;
+            margin-bottom: 1.5rem; border-left: 3px solid var(--accent);
+        }
+        .research-highlights h4 { color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .highlight-item { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .highlight-item::before { content: "▸ "; color: var(--accent); }
+
+        /* Tech Stack */
+        .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: bold; margin-top: 1rem; }
+        .tech-tag { 
+            display: inline-block; background: rgba(34, 211, 238, 0.1); 
+            color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; 
+            font-size: 0.75rem; margin: 0.3rem 0.3rem 0.3rem 0; border: 1px solid rgba(34, 211, 238, 0.2);
+        }
 
         /* Projects Grid */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
@@ -57,20 +111,70 @@
             border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .project-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .project-card h3 { margin-bottom: 1rem; font-size: 1.4rem; }
+        .project-card:hover { transform: translateY(-8px); border-color: var(--accent); }
+        .project-card h3 { margin-bottom: 1rem; font-size: 1.3rem; color: var(--accent); }
         .project-card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; }
-        .tech-stack { font-size: 0.8rem; color: var(--accent); font-weight: bold; }
+        .project-type { 
+            display: inline-block; font-size: 0.7rem; text-transform: uppercase; 
+            color: var(--accent); margin-bottom: 0.8rem; font-weight: bold; letter-spacing: 1px;
+        }
+
+        /* Education & Skills */
+        .info-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; }
+        .edu-card { background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem; }
+        .edu-card h3 { color: var(--accent); margin-bottom: 0.5rem; }
+        .edu-meta { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .edu-highlight { color: var(--accent); font-weight: 600; }
+
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .skill-pill { 
+            background: rgba(34, 211, 238, 0.1); color: var(--accent); 
+            padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.85rem; 
+            border: 1px solid rgba(34, 211, 238, 0.2); transition: 0.3s;
+        }
+        .skill-pill:hover { background: rgba(34, 211, 238, 0.2); transform: scale(1.05); }
 
         /* Footer */
         footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 4rem 0; text-align: center; }
-        .social-icons { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; font-size: 1.5rem; }
-        .social-icons a { color: var(--text-main); transition: 0.3s; }
-        .social-icons a:hover { color: var(--accent); transform: scale(1.2); }
+        .social-icons { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; font-size: 1.8rem; }
+        .social-icons a { 
+            color: var(--text-main); transition: 0.3s; width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+        .social-icons a:hover { color: var(--accent); background: rgba(34, 211, 238, 0.2); transform: scale(1.15); }
 
+        .repo-link {
+            display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem;
+            background: rgba(34, 211, 238, 0.1); color: var(--accent); border: 1px solid var(--accent);
+            border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: bold;
+            transition: 0.3s;
+        }
+        .repo-link:hover { background: var(--accent); color: var(--bg); }
+
+        /* Phase Table */
+        .phase-table {
+            width: 100%; margin-top: 1rem; border-collapse: collapse; font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.3); border-radius: 8px; overflow: hidden;
+        }
+        .phase-table th { 
+            background: rgba(34, 211, 238, 0.15); color: var(--accent); 
+            padding: 0.8rem; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+        }
+        .phase-table td { 
+            padding: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            color: var(--text-dim);
+        }
+        .phase-status-pass { color: var(--success); font-weight: bold; }
+        .phase-status-pending { color: var(--warning); }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .info-grid { grid-template-columns: 1fr; }
-            .hero-name { font-size: 2.5rem; }
+            .hero-name { font-size: 2.2rem; }
+            .section-title { font-size: 1.5rem; }
+            nav { gap: 1rem; }
+            nav a { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
         }
     </style>
 </head>
@@ -78,89 +182,302 @@
 
     <nav>
         <a href="#about">About</a>
+        <a href="#research">Research</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
 
     <div class="container">
+        <!-- Header -->
         <header id="about">
-            <h1 class="hero-name">Iftakhar Majumder</h1>
+            <h1 class="hero-name">Iftakhar Hasan</h1>
+            <p class="hero-title">Machine Learning & Bioinformatics Researcher</p>
             <p class="hero-tag">
-                Final Year CSE Student at <strong>United International University</strong>. 
-                Passionate about Machine Learning, NLP, and their applications in <strong>Bioinformatics</strong>.
+                Final-year CSE student at <strong>United International University</strong>. 
+                Focused on <strong>bioinformatics</strong>, <strong>machine learning</strong>, and 
+                <strong>energy-efficient AI systems</strong>. Currently working on research projects in 
+                quantum-classical hybrid networks and concept drift adaptation.
             </p>
         </header>
 
-        <div class="info-grid">
-            <section>
-                <h2 class="section-title">Education</h2>
-                <div class="edu-card">
-                    <h3>B.Sc. in Computer Science & Engineering</h3>
-                    <p>United International University (UIU) </p>
-                    <p style="color: var(--accent); font-size: 0.9rem;">Exp. Graduation: Nov 2026 | 10th Trimester </p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem;">Thesis: Applied Machine Learning in Bioinformatics </p>
-                </div>
-            </section>
+        <!-- Research Projects -->
+        <section id="research">
+            <h2 class="section-title">Research Projects</h2>
+            <div class="research-grid">
 
-            <section>
-                <h2 class="section-title">Technical Skills</h2>
-                <div class="skills-container">
-                    <span class="skill-pill">Python</span> <span class="skill-pill">C/C++</span> 
-                    <span class="skill-pill">Java</span> <span class="skill-pill">SQL</span>
-                    <span class="skill-pill">Scikit-learn</span> <span class="skill-pill">PyTorch</span>
-                    <span class="skill-pill">TensorFlow</span> <span class="skill-pill">NLP</span>
-                    <span class="skill-pill">Linux (Ubuntu)</span> <span class="skill-pill">Figma</span>
-                    <span class="skill-pill">Arduino/ESP32</span> 
+                <!-- QMedLeafNet -->
+                <div class="research-card">
+                    <div>
+                        <h3>QMedLeafNet</h3>
+                        <p class="research-subtitle">Quantum-Classical Hybrid for Plant Health Detection</p>
+                        <span class="status-badge status-submitted">Submitted to ICCIT 2026</span>
+                        
+                        <div class="research-highlights">
+                            <h4>Key Achievements</h4>
+                            <div class="highlight-item">MobileNetV3-Small backbone (927K params)</div>
+                            <div class="highlight-item">4 parameter-matched classical heads</div>
+                            <div class="highlight-item">25,962 indexed images (5-fold CV)</div>
+                            <div class="highlight-item">7 species × 9 conditions = 63-class classification</div>
+                        </div>
+                        
+                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1rem;">
+                            <strong style="color: var(--accent);">Status:</strong> Phase 2 (Classical Baselines) completed. 
+                            Submitted to ICCIT 2026 conference — awaiting reviewer decision.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">scikit-learn</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/QMedLeafNet" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
                 </div>
-            </section>
-        </div>
 
+                <!-- AMP-Discord -->
+                <div class="research-card">
+                    <div>
+                        <h3>AMP-Discord</h3>
+                        <p class="research-subtitle">Cross-Database Label Conflict Audit</p>
+                        <span class="status-badge status-progress">In Progress</span>
+                        
+                        <div class="research-highlights">
+                            <h4>Project Scope</h4>
+                            <div class="highlight-item">Aggregates antimicrobial peptide data from 6 databases</div>
+                            <div class="highlight-item">Detects contradictory labels across sources</div>
+                            <div class="highlight-item">Generates conflict-flagged reconciled dataset</div>
+                            <div class="highlight-item">Releases decision rule for handling conflicts</div>
+                        </div>
+                        
+                        <table class="phase-table">
+                            <tr>
+                                <th>Phase</th>
+                                <th>Work</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Acquisition + Manifest</td>
+                                <td class="phase-status-pass">3/4 cached ✓</td>
+                            </tr>
+                            <tr>
+                                <td>2-5</td>
+                                <td>Normalisation → Release</td>
+                                <td class="phase-status-pending">Pending</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">Bioinformatics</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/AMP-Discord" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
+                </div>
+
+                <!-- MechanismSelector -->
+                <div class="research-card">
+                    <div>
+                        <h3>MechanismSelector</h3>
+                        <p class="research-subtitle">Energy-Efficient Concept Drift Adaptation</p>
+                        <span class="status-badge status-progress">In Progress</span>
+                        
+                        <div class="research-highlights">
+                            <h4>Economic Model</h4>
+                            <div class="highlight-item">Nudge costs ~5% of rebuild</div>
+                            <div class="highlight-item">Saves ~95% if nudge succeeds</div>
+                            <div class="highlight-item">Metric: work_units = estimators × rows</div>
+                            <div class="highlight-item">XGBoost/RF: 25× cost difference</div>
+                        </div>
+
+                        <table class="phase-table">
+                            <tr>
+                                <th>Phase</th>
+                                <th>Module</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1-3</td>
+                                <td>Data, Accounting, Mechanisms</td>
+                                <td class="phase-status-pass">PASS ✓</td>
+                            </tr>
+                            <tr>
+                                <td>4-8</td>
+                                <td>Selector → Packaging</td>
+                                <td class="phase-status-pending">Pending</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">scikit-learn</span>
+                            <span class="tech-tag">XGBoost</span>
+                            <span class="tech-tag">River</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/MechanismSelector" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
+                </div>
+
+                <!-- CysWeave -->
+                <div class="research-card">
+                    <div>
+                        <h3>CysWeave</h3>
+                        <p class="research-subtitle">Research Project (In Progress)</p>
+                        <span class="status-badge status-progress">In Progress</span>
+                        
+                        <div class="research-highlights">
+                            <h4>Focus Area</h4>
+                            <div class="highlight-item">Bioinformatics research</div>
+                            <div class="highlight-item">Computational biology</div>
+                            <div class="highlight-item">Details developing</div>
+                        </div>
+                        
+                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">
+                            Project details will be updated as development progresses.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Bioinformatics</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/CysWeave" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Full-Stack Projects -->
         <section id="projects">
-            <h2 class="section-title">Selected Projects</h2>
+            <h2 class="section-title">Full-Stack & Production Projects</h2>
             <div class="project-grid">
+
                 <div class="project-card">
                     <div>
-                        <h3>UIU Talent Hunt Platform</h3>
-                        <p>Leading UI/UX design and frontend development for a university talent showcasing platform with secure student authentication.</p>
+                        <span class="project-type">Full-Stack Platform</span>
+                        <h3>UIU Talent Hunt</h3>
+                        <p>Talent discovery platform for United International University with secure authentication, audio portal, player interface, and content management system.</p>
                     </div>
-                    <div class="tech-stack">HTML5 • CSS3 • Figma</div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/UIU-TALENT-HUNT" class="repo-link" target="_blank">Frontend →</a>
+                        <a href="https://github.com/iftakhar005/uiu_talent_hunt_backend" class="repo-link" target="_blank">Backend →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
                     <div>
-                        <h3>Social Media Sentiment Analysis</h3>
-                        <p>Experimented with SVM and Naïve Bayes to classify text data. Performed tokenization, vectorization, and performance evaluation.</p>
+                        <span class="project-type">Web Application</span>
+                        <h3>One Piece Character Explorer</h3>
+                        <p>Interactive character discovery platform for One Piece with detailed cards showing character info, crew, bounty, and devil fruits.</p>
                     </div>
-                    <div class="tech-stack">Python • Scikit-learn • NLP</div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/onepiece-explore-" class="repo-link" target="_blank">Frontend →</a>
+                        <a href="https://github.com/iftakhar005/One-piece-Backend" class="repo-link" target="_blank">Backend →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
                     <div>
-                        <h3>Mental Health Rehabilitation System</h3>
-                        <p>Designed a simulation system for patient schedules. Integrated gamification principles and managed full DB schema.</p>
+                        <span class="project-type">Research Application</span>
+                        <h3>p53 Mutation Structure Analysis</h3>
+                        <p>Bioinformatics study using AlphaFold to analyze how cancer mutations alter protein stability and structural prediction confidence.</p>
                     </div>
-                    <div class="tech-stack">Java • SQL • JavaFX</div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AlphaFold</span>
+                            <span class="tech-tag">Bioinformatics</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/p53-mutation-structure-analysis-using-Alphafold" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
                     <div>
-                        <h3>Wandernest Software</h3>
-                        <p>Developed backend components for a travel management platform focusing on scalability and user experience.</p>
+                        <span class="project-type">Hackathon Project</span>
+                        <h3>BUET CSE FEST 2026</h3>
+                        <p>AI/API preliminary round submission featuring backend development with database integration and external API handling.</p>
                     </div>
-                    <div class="tech-stack">Backend Development</div>
+                    <div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python/Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+                        <a href="https://github.com/iftakhar005/bcf-2026-hackathon-preliminary" class="repo-link" target="_blank">View Repository →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Education & Skills -->
+        <section>
+            <div class="info-grid">
+                <div>
+                    <h2 class="section-title">Education</h2>
+                    <div class="edu-card">
+                        <h3>B.Sc. in Computer Science & Engineering</h3>
+                        <p class="edu-meta"><strong>United International University (UIU)</strong></p>
+                        <p class="edu-meta"><span class="edu-highlight">Expected Graduation: November 2026</span> | 10th Trimester</p>
+                        <p class="edu-meta" style="margin-top: 1rem; color: var(--accent);">Thesis: Applied Machine Learning in Bioinformatics</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-container">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">TypeScript</span>
+                        <span class="skill-pill">Java</span>
+                        <span class="skill-pill">C/C++</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">PyTorch</span>
+                        <span class="skill-pill">TensorFlow</span>
+                        <span class="skill-pill">scikit-learn</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">PostgreSQL</span>
+                        <span class="skill-pill">MongoDB</span>
+                        <span class="skill-pill">Bioinformatics</span>
+                        <span class="skill-pill">NLP</span>
+                        <span class="skill-pill">Linux</span>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Footer -->
         <footer id="contact">
-            <h2 style="margin-bottom: 1rem;">Let's Connect</h2>
-            <p style="color: var(--text-dim); margin-bottom: 2rem;">Dhaka, Bangladesh </p>
+            <h2 style="margin-bottom: 1rem; color: var(--accent);">Let's Connect</h2>
+            <p style="color: var(--text-dim); margin-bottom: 1rem; font-size: 1.05rem;">Dhaka, Bangladesh</p>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Email: <a href="mailto:iftyl1234@gmail.com" style="color: var(--accent); text-decoration: none;">iftyl1234@gmail.com</a></p>
             <div class="social-icons">
-                <a href="mailto:iftyl1234@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/iftakhar005" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/iftakhar-majumder" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:iftyl1234@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/iftakhar005" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/iftakhar-majumder" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-dim);">&copy; 2025 Iftakhar Majumder. All rights reserved.</p>
+            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 2rem;">&copy; 2026 Iftakhar Hasan. All rights reserved. | Last updated: August 2026</p>
         </footer>
     </div>
 
