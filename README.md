@@ -1,12 +1,10 @@
+# 🔗 **[→ VIEW MY PORTFOLIO ←](https://iftakhar005.github.io)**
+
+---
+
 # Iftakhar Majumder - Portfolio
 
 Welcome to my portfolio repository! This is where I showcase my work in **machine learning**, **bioinformatics research**, and **full-stack web development**.
-
-## 🌐 Visit My Portfolio
-
-**👉 [iftakhar005.github.io](https://iftakhar005.github.io)** 
-
-Click the link above to explore my complete portfolio with interactive project showcases, research details, and contact information.
 
 ## 📋 What You'll Find
 
@@ -45,6 +43,6 @@ Python • JavaScript • TypeScript • React • Node.js • PyTorch • Tenso
 
 ---
 
-**[Visit Portfolio →](https://iftakhar005.github.io)** | **[View GitHub Profile →](https://github.com/iftakhar005)**
+### **[👉 VISIT MY PORTFOLIO 👈](https://iftakhar005.github.io)**
 
 *Last Updated: August 2026*
