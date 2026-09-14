@@ -13,9 +13,14 @@
       --text:#c6ffd7;
       --muted:#6fae7a;
       --glass:rgba(0,0,0,0.25);
+      --section-bg: rgba(0,20,6,0.28);
+      --accent-line: rgba(106,255,106,0.08);
+      --section-border: rgba(106,255,106,0.03);
+      --nav-height: 84px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       background: linear-gradient(180deg,#00110a 0%,var(--bg) 100%);
       color:var(--text);
@@ -29,10 +34,26 @@
       content:"";pointer-events:none;position:fixed;inset:0;background-image:linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);background-size:100% 3px;mix-blend-mode:overlay;opacity:0.7}
 
     .wrap{max-width:1100px;margin:0 auto}
-    nav{display:flex;gap:0.6rem;justify-content:center;margin-bottom:1.25rem}
-    nav a{color:var(--green);text-decoration:none;border:1px solid rgba(0,255,0,0.06);padding:0.35rem 0.75rem;border-radius:6px;font-weight:700;font-size:0.85rem}
-    header{background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.25));border:1px solid rgba(0,255,0,0.06);padding:1.25rem;border-radius:8px;margin-bottom:1rem}
-    .hero-title{font-size:1.9rem;color:var(--green);font-weight:700}
+    /* sticky top nav with stronger visual separation */
+    nav{
+      display:flex;gap:0.6rem;justify-content:center;margin-bottom:1.25rem;
+      position:sticky;top:1rem;z-index:40;padding:0.6rem;background:linear-gradient(180deg, rgba(0,0,0,0.24), rgba(0,0,0,0.12));border-radius:10px;border:1px solid rgba(0,255,0,0.02);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+    nav a{
+      color:var(--green);text-decoration:none;border:1px solid rgba(0,255,0,0.02);padding:0.45rem 0.85rem;border-radius:8px;font-weight:700;font-size:0.92rem;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    nav a:hover{ transform:translateY(-2px); box-shadow: 0 6px 18px rgba(106,255,106,0.04); }
+    nav a:focus{ outline:2px solid rgba(106,255,106,0.12); outline-offset:3px; }
+    nav a.active{
+      background:linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
+      box-shadow: 0 8px 28px rgba(106,255,106,0.05), inset 0 0 12px rgba(0,0,0,0.35);
+      transform:none;
+    }
+
+    header{background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.25));border:1px solid var(--accent-line);padding:1.25rem;border-radius:8px;margin-bottom:1rem}
+    .hero-title{font-size:2.1rem;color:var(--green);font-weight:700}
     .hero-sub{color:var(--muted);margin-top:0.4rem}
 
     .terminal{background:var(--panel);border:1px solid rgba(0,255,0,0.04);padding:1rem;border-radius:6px;margin-top:1rem}
@@ -43,35 +64,68 @@
     .metric-value{color:var(--green);font-weight:700;margin-top:0.25rem}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:1rem}
-    .card{background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.06));border:1px solid rgba(0,255,0,0.04);padding:1rem;border-radius:6px}
+    .card{background:linear-gradient(180deg,rgba(0,0,0,0.14),rgba(0,0,0,0.06));border:1px solid var(--section-border);padding:1rem;border-radius:6px;box-shadow: 0 8px 18px rgba(0,0,0,0.45)}
     h3{color:var(--green);margin-bottom:0.35rem}
     p{color:var(--muted)}
 
+    /* section wrapper to visually separate areas (stronger) */
+    .retro-section{
+      margin-top:1.4rem;padding:1.1rem 1.2rem;border-radius:10px;
+      background: linear-gradient(180deg, rgba(0,20,6,0.30), rgba(0,0,0,0.02));
+      border:1px solid rgba(0,255,0,0.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      position:relative;
+      overflow:visible;
+    }
+    /* accent bar on left of each section for quick scanning */
+    .retro-section::before{
+      content:'';position:absolute;left:8px;top:16px;bottom:16px;width:4px;border-radius:4px;background:linear-gradient(180deg, rgba(106,255,106,0.14), rgba(106,255,106,0.04));
+      box-shadow:0 6px 24px rgba(106,255,106,0.02);
+    }
+    .retro-section h2{color:var(--green);font-size:1.6rem;margin-bottom:0.35rem}
+    .retro-section p.lead{color:var(--muted);margin-bottom:0.8rem}
+
+    /* stronger divider between sections */
+    .section-divider{height:2px;background:linear-gradient(90deg,transparent,var(--accent-line),transparent);margin:1rem 0;border-radius:2px}
+
+    /* make anchor target offset so heading isn't hidden under sticky nav */
+    .retro-section{ scroll-margin-top: calc(var(--nav-height) + 8px); }
+
+    /* make anchor focus more visible */
+    :target{ outline: 3px solid rgba(106,255,106,0.04); transition:outline .18s ease; }
+
     /* typing effect for hero subtitle */
-    .typing{width:26ch;white-space:nowrap;overflow:hidden;border-right:2px solid var(--green);animation:typing 3.6s steps(26),blink .8s step-end infinite}
-    @keyframes typing{from{width:0}to{width:26ch}}
+    .typing{width:32ch;white-space:nowrap;overflow:hidden;border-right:2px solid var(--green);animation:typing 3.6s steps(32),blink .8s step-end infinite}
+    @keyframes typing{from{width:0}to{width:32ch}}
     @keyframes blink{50%{border-color:transparent}}
 
     footer{margin-top:1.25rem;text-align:center;color:var(--muted);font-size:0.9rem}
 
     a.repo{color:var(--green);text-decoration:none;border:1px dashed rgba(106,255,106,0.06);padding:0.35rem 0.6rem;border-radius:5px}
+
+    /* accessible focus state for interactive elements */
+    a:focus{ outline: 3px solid rgba(106,255,106,0.12); outline-offset: 4px; }
+
+    /* responsive tweaks */
+    @media (max-width:760px){nav{flex-wrap:wrap} .hero-title{font-size:1.6rem}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <nav>
-      <a href="#about">Operator</a>
-      <a href="#research">Research Missions</a>
-      <a href="#projects">Production Deployments</a>
-      <a href="#skills">Systems</a>
-      <a href="#contact">Comms</a>
+    <nav id="main-nav" aria-label="Primary">
+      <!-- keep href anchors for browser fallback and accessibility -->
+      <a href="#about" data-target="about" class="nav-link" role="link">Operator</a>
+      <a href="#research" data-target="research" class="nav-link" role="link">Research Missions</a>
+      <a href="#projects" data-target="projects" class="nav-link" role="link">Production Deployments</a>
+      <a href="#skills" data-target="skills" class="nav-link" role="link">Systems</a>
+      <a href="#contact" data-target="contact" class="nav-link" role="link">Comms</a>
     </nav>
 
-    <header id="about">
+    <header id="about" class="retro-section" tabindex="-1">
       <div class="hero-title">Iftakhar Majumder</div>
       <div class="typing hero-sub">Machine Learning & Bioinformatics Research Operator</div>
 
-      <div class="terminal">
+      <div class="terminal" aria-label="Profile terminal">
         <div class="cmd">$ cat profile.summary</div>
         <p style="margin-top:0.6rem;color:var(--muted)">Final-year CSE student — AI, ML, Bioinformatics. Building energy-efficient models and research tooling.</p>
 
@@ -83,41 +137,141 @@
       </div>
     </header>
 
-    <section id="research">
-      <h2 style="color:var(--green)">Research Missions</h2>
-      <p style="color:var(--muted)">Active and submitted research tracks.</p>
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <section id="research" class="retro-section" tabindex="-1">
+      <h2>Research Missions</h2>
+      <p class="lead">Active and submitted research tracks.</p>
 
       <div class="grid">
-        <!-- cards copied from main content, kept short for clarity -->
         <div class="card">
           <h3>QMedLeafNet</h3>
-          <p class="muted">Quantum-Classical Hybrid for Plant Health Detection — Submitted to ICCIT 2026</p>
+          <p>Quantum-Classical Hybrid for Plant Health Detection — Submitted to ICCIT 2026</p>
           <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/QMedLeafNet" target="_blank">Open Mission Repo →</a></p>
         </div>
 
         <div class="card">
           <h3>AMP-Discord</h3>
-          <p class="muted">Cross-Database Label Conflict Audit — In Progress</p>
+          <p>Cross-Database Label Conflict Audit — In Progress</p>
           <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/AMP-Discord" target="_blank">Open Mission Repo →</a></p>
         </div>
 
         <div class="card">
           <h3>MechanismSelector</h3>
-          <p class="muted">Energy-Efficient Concept Drift Adaptation — In Progress</p>
+          <p>Energy-Efficient Concept Drift Adaptation — In Progress</p>
           <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/MechanismSelector" target="_blank">Open Mission Repo →</a></p>
         </div>
 
         <div class="card">
           <h3>CysWeave</h3>
-          <p class="muted">Bioinformatics Research Project — In Progress</p>
+          <p>Bioinformatics Research Project — In Progress</p>
           <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/CysWeave" target="_blank">Open Mission Repo →</a></p>
         </div>
       </div>
     </section>
 
-    <footer>
-      © 2026 Iftakhar Majumder — Retro Terminal Variant
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <section id="projects" class="retro-section" tabindex="-1">
+      <h2>Production Deployments</h2>
+      <p class="lead">Shipped systems and engineering deployments from full-stack operations.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>UIU Talent Hunt</h3>
+          <p>Talent discovery platform with secure authentication and audio portal.</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/UIU-TALENT-HUNT" target="_blank">Frontend →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>One Piece Character Explorer</h3>
+          <p>Interactive character discovery platform with detailed cards.</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/onepiece-explore-" target="_blank">Open Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>p53 Mutation Structure Analysis</h3>
+          <p>AlphaFold-based bioinformatics analysis of cancer mutations.</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/p53-mutation-structure-analysis-using-Alphafold" target="_blank">Open Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>BUET CSE FEST 2026</h3>
+          <p>Hackathon submission featuring backend and API integration.</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/bcf-2026-hackathon-preliminary" target="_blank">Open Repo →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <section id="skills" class="retro-section" tabindex="-1">
+      <h2>Systems & Operator Profile</h2>
+      <p class="lead">Academic profile and technical stack powering the mission console.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>B.Sc. in Computer Science & Engineering</h3>
+          <p><strong>United International University (UIU)</strong></p>
+          <p style="color:var(--green);margin-top:0.5rem">Expected Graduation: February 2027 | 11th Trimester</p>
+        </div>
+        <div class="card">
+          <h3>Technical Systems</h3>
+          <p class="muted">Python, JavaScript, TypeScript, Java, C/C++, SQL, PyTorch, TensorFlow, scikit-learn, React, Node.js, PostgreSQL, MongoDB, Bioinformatics, NLP, Linux</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <footer id="contact" class="retro-section" tabindex="-1">
+      <h2>Comms Terminal</h2>
+      <p class="lead">Dhaka, Bangladesh</p>
+      <p>Email: <a href="mailto:iftyl1234@gmail.com" style="color:var(--green);text-decoration:none">iftyl1234@gmail.com</a></p>
+      <p style="margin-top:0.6rem">Connect: <a class="repo" href="https://github.com/iftakhar005" target="_blank">GitHub</a> <a class="repo" href="https://linkedin.com/in/iftakhar-majumder" target="_blank">LinkedIn</a></p>
+      <p class="footer-small" style="margin-top:0.6rem;color:var(--muted)">© 2026 Iftakhar Majumder — Retro Terminal Variant</p>
     </footer>
+
   </div>
+
+  <script>
+    // Navigation: smooth scroll fallback + IntersectionObserver active-link
+    (function(){
+      const links = Array.from(document.querySelectorAll('.nav-link'));
+      const sections = links.map(l => document.getElementById(l.dataset.target)).filter(Boolean);
+
+      // click behavior: ensure smooth scroll and focus for accessibility
+      links.forEach(link=>{
+        link.addEventListener('click', (e)=>{
+          // allow normal anchor navigation but also ensure smooth scroll in old browsers
+          const id = link.getAttribute('href')?.replace('#','');
+          const sec = document.getElementById(id);
+          if(sec){
+            e.preventDefault();
+            const top = sec.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 84) - 8;
+            window.scrollTo({top, behavior:'smooth'});
+            // set focus for screen readers and keyboard users
+            sec.setAttribute('tabindex','-1');
+            sec.focus({preventScroll:true});
+          }
+        });
+      });
+
+      // IntersectionObserver to add/remove .active on nav links (works while scrolling)
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          const id = entry.target.id;
+          const link = document.querySelector('.nav-link[data-target="'+id+'"]');
+          if(!link) return;
+          if(entry.isIntersecting){
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { root:null, threshold: 0.45 });
+
+      sections.forEach(s => observer.observe(s));
+    })();
+  </script>
 </body>
 </html>
