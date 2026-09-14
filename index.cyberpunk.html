@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Iftakhar Majumder — Cyberpunk Variant</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <style>
+    :root{
+      --bg1:#0b0010; /* deep purple */
+      --neon-pink:#ff2d95;
+      --neon-cyan:#00f0ff;
+      --panel:rgba(255,255,255,0.02);
+      --muted:#cbd6ff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--muted);background:radial-gradient(ellipse at 10% 10%, rgba(255,45,149,0.06), transparent 20%),radial-gradient(ellipse at 90% 80%, rgba(0,240,255,0.05), transparent 20%),linear-gradient(180deg,var(--bg1),#000);min-height:100vh;padding:2rem}
+
+    .wrap{max-width:1100px;margin:0 auto}
+    nav{display:flex;gap:0.6rem;justify-content:center;margin-bottom:1.25rem}
+    nav a{color:var(--muted);text-decoration:none;padding:0.45rem 0.8rem;border-radius:8px;background:linear-gradient(90deg,rgba(255,45,149,0.06),rgba(0,240,255,0.04));font-weight:700}
+
+    header{padding:1.6rem;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,45,149,0.06);box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+    .hero-name{font-size:2.2rem;font-weight:800;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-sub{margin-top:0.4rem;color:rgba(203,214,255,0.9)}
+
+    .accent-line{height:3px;border-radius:2px;margin-top:1rem;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));box-shadow:0 0 18px rgba(0,240,255,0.08),0 0 26px rgba(255,45,149,0.06)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:1rem}
+    .card{padding:1rem;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(0,240,255,0.03);backdrop-filter:blur(4px)}
+    h3{color:var(--muted);margin-bottom:0.3rem}
+    p{color:rgba(203,214,255,0.85)}
+
+    .neon-btn{display:inline-block;padding:0.5rem 0.8rem;border-radius:8px;color:#05060a;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(255,45,149,0.12),0 12px 30px rgba(0,240,255,0.06)}
+
+    /* animated gradient underline on hover for headings */
+    .card h3{position:relative}
+    .card h3::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;border-radius:3px;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));transition:width .4s ease}
+    .card:hover h3::after{width:60%}
+
+    footer{margin-top:1.25rem;text-align:center;color:rgba(203,214,255,0.6)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a href="#about">Operator</a>
+      <a href="#research">Research Missions</a>
+      <a href="#projects">Production Deployments</a>
+      <a href="#skills">Systems</a>
+      <a href="#contact">Comms</a>
+    </nav>
+
+    <header id="about">
+      <div class="hero-name">Iftakhar Majumder</div>
+      <div class="hero-sub">Machine Learning & Bioinformatics Research Operator</div>
+      <div class="accent-line"></div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Primary Domain</h3>
+          <p>ML + Bioinformatics</p>
+        </div>
+        <div class="card">
+          <h3>Current Program</h3>
+          <p>B.Sc. CSE @ UIU</p>
+        </div>
+        <div class="card">
+          <h3>Core Focus</h3>
+          <p>Energy-Efficient AI</p>
+        </div>
+      </div>
+    </header>
+
+    <section id="research">
+      <h2 style="margin-top:1rem;color:var(--muted)">Research Missions</h2>
+      <p style="color:rgba(203,214,255,0.75)">Active and submitted research tracks.</p>
+
+      <div class="grid" style="margin-top:0.8rem">
+        <div class="card">
+          <h3>QMedLeafNet</h3>
+          <p>Quantum-Classical Hybrid for Plant Health Detection — Submitted to ICCIT 2026</p>
+          <p style="margin-top:0.6rem"><a class="neon-btn" href="https://github.com/iftakhar005/QMedLeafNet" target="_blank">Open Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>AMP-Discord</h3>
+          <p>Cross-Database Label Conflict Audit — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="neon-btn" href="https://github.com/iftakhar005/AMP-Discord" target="_blank">Open Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>MechanismSelector</h3>
+          <p>Energy-Efficient Concept Drift Adaptation — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="neon-btn" href="https://github.com/iftakhar005/MechanismSelector" target="_blank">Open Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>CysWeave</h3>
+          <p>Bioinformatics Research Project — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="neon-btn" href="https://github.com/iftakhar005/CysWeave" target="_blank">Open Repo →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Iftakhar Majumder — Cyberpunk Variant
+    </footer>
+  </div>
+</body>
+</html>

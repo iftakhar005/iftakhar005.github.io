@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Iftakhar Majumder — Retro Terminal Variant</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <style>
+    :root{
+      --bg:#041006;
+      --panel:#021005;
+      --green:#6aff6a;
+      --text:#c6ffd7;
+      --muted:#6fae7a;
+      --glass:rgba(0,0,0,0.25);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      background: linear-gradient(180deg,#00110a 0%,var(--bg) 100%);
+      color:var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      -webkit-font-smoothing:antialiased;
+      padding:2rem;
+      line-height:1.5;
+    }
+    /* subtle CRT scanlines */
+    body::after{
+      content:"";pointer-events:none;position:fixed;inset:0;background-image:linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);background-size:100% 3px;mix-blend-mode:overlay;opacity:0.7}
+
+    .wrap{max-width:1100px;margin:0 auto}
+    nav{display:flex;gap:0.6rem;justify-content:center;margin-bottom:1.25rem}
+    nav a{color:var(--green);text-decoration:none;border:1px solid rgba(0,255,0,0.06);padding:0.35rem 0.75rem;border-radius:6px;font-weight:700;font-size:0.85rem}
+    header{background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.25));border:1px solid rgba(0,255,0,0.06);padding:1.25rem;border-radius:8px;margin-bottom:1rem}
+    .hero-title{font-size:1.9rem;color:var(--green);font-weight:700}
+    .hero-sub{color:var(--muted);margin-top:0.4rem}
+
+    .terminal{background:var(--panel);border:1px solid rgba(0,255,0,0.04);padding:1rem;border-radius:6px;margin-top:1rem}
+    .cmd{color:var(--green);}
+    .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.65rem;margin-top:0.85rem}
+    .metric{border-left:3px solid rgba(106,255,106,0.08);padding:0.6rem 0.8rem;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent)}
+    .metric-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase}
+    .metric-value{color:var(--green);font-weight:700;margin-top:0.25rem}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:1rem}
+    .card{background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.06));border:1px solid rgba(0,255,0,0.04);padding:1rem;border-radius:6px}
+    h3{color:var(--green);margin-bottom:0.35rem}
+    p{color:var(--muted)}
+
+    /* typing effect for hero subtitle */
+    .typing{width:26ch;white-space:nowrap;overflow:hidden;border-right:2px solid var(--green);animation:typing 3.6s steps(26),blink .8s step-end infinite}
+    @keyframes typing{from{width:0}to{width:26ch}}
+    @keyframes blink{50%{border-color:transparent}}
+
+    footer{margin-top:1.25rem;text-align:center;color:var(--muted);font-size:0.9rem}
+
+    a.repo{color:var(--green);text-decoration:none;border:1px dashed rgba(106,255,106,0.06);padding:0.35rem 0.6rem;border-radius:5px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a href="#about">Operator</a>
+      <a href="#research">Research Missions</a>
+      <a href="#projects">Production Deployments</a>
+      <a href="#skills">Systems</a>
+      <a href="#contact">Comms</a>
+    </nav>
+
+    <header id="about">
+      <div class="hero-title">Iftakhar Majumder</div>
+      <div class="typing hero-sub">Machine Learning & Bioinformatics Research Operator</div>
+
+      <div class="terminal">
+        <div class="cmd">$ cat profile.summary</div>
+        <p style="margin-top:0.6rem;color:var(--muted)">Final-year CSE student — AI, ML, Bioinformatics. Building energy-efficient models and research tooling.</p>
+
+        <div class="metric-grid">
+          <div class="metric"><div class="metric-label">Primary Domain</div><div class="metric-value">ML + Bioinformatics</div></div>
+          <div class="metric"><div class="metric-label">Program</div><div class="metric-value">B.Sc. CSE @ UIU</div></div>
+          <div class="metric"><div class="metric-label">Focus</div><div class="metric-value">Energy-Efficient AI</div></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="research">
+      <h2 style="color:var(--green)">Research Missions</h2>
+      <p style="color:var(--muted)">Active and submitted research tracks.</p>
+
+      <div class="grid">
+        <!-- cards copied from main content, kept short for clarity -->
+        <div class="card">
+          <h3>QMedLeafNet</h3>
+          <p class="muted">Quantum-Classical Hybrid for Plant Health Detection — Submitted to ICCIT 2026</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/QMedLeafNet" target="_blank">Open Mission Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>AMP-Discord</h3>
+          <p class="muted">Cross-Database Label Conflict Audit — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/AMP-Discord" target="_blank">Open Mission Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>MechanismSelector</h3>
+          <p class="muted">Energy-Efficient Concept Drift Adaptation — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/MechanismSelector" target="_blank">Open Mission Repo →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>CysWeave</h3>
+          <p class="muted">Bioinformatics Research Project — In Progress</p>
+          <p style="margin-top:0.6rem"><a class="repo" href="https://github.com/iftakhar005/CysWeave" target="_blank">Open Mission Repo →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Iftakhar Majumder — Retro Terminal Variant
+    </footer>
+  </div>
+</body>
+</html>
